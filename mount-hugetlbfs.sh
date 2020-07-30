@@ -9,7 +9,11 @@ DEFAULT_HUGE_MNT_PATH=/mnt/huge
 main() {
     let huge_mnt_size_gb=${DEFAULT_HUGE_MNT_SIZE_GB}
     let huge_mnt_pagecount=$(((huge_mnt_size_gb * 1024)/2))
-    huge_mnt_path=${DEFAULT_HUGE_MNT_PATH}
+    if [[ -n "${1}" ]] ; then
+        huge_mnt_path="${1}"
+    else
+        huge_mnt_path=${DEFAULT_HUGE_MNT_PATH}
+    fi
     sudo -E mkdir -pv ${huge_mnt_path}
     sudo -n -E chown -Rv $(id -u $(whoami)):$(id -g $(whoami)) ${huge_mnt_path}
     sudo -n -E /usr/bin/env bash -c "set -x; (echo ${huge_mnt_pagecount} > /proc/sys/vm/nr_hugepages)"

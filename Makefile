@@ -9,7 +9,7 @@ cargo.target_dir=target
 arg.demo_bin=beholder
 arg.test_filename=softdirty-repro.mmap
 arg.tmpfs_path:=/dev/shm
-arg.hugetlbfs_path:=/mnt/huge
+arg.hugetlbfs_path:=/mnt/beholder-hugetlbfs-test
 
 arg.page_size.normal=normal
 arg.page_size.huge=huge
@@ -31,7 +31,7 @@ $(rust):
 
 $(arg.hugetlbfs_path):
 	@echo "Mounting Hugetlbfs to $(arg.hugetlbfs_path)..."
-	./mount-hugetlbfs.sh
+	./mount-hugetlbfs.sh $(arg.hugetlbfs_path)
 
 
 $(cargo.target_dir):
@@ -92,5 +92,7 @@ clean:
 	-rm -rfv $(cargo.target_dir)
 	-rm -fv $(arg.hugetlbfs_path)/$(arg.test_filename)
 	-rm -fv $(arg.tmpfs_path)/$(arg.test_filename)
-	-sudo umount $(arg.hugetlbfs_path) 
+	-sudo umount $(arg.hugetlbfs_path)
+	-sudo rm -d $(arg.hugetlbfs_path)
+
 

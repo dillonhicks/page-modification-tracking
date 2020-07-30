@@ -38,4 +38,5 @@ make run-hugetlbfs-test
 
 
 Note that the test assumes you do not have a hugetlbfs mount
-configured and will create a 1G mount for you located at /mnt/huge.
+configured and will create a 1G mount for you located at
+/mnt/beholder-hugetlbfs-test.
