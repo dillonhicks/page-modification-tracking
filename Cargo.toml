@@ -1,0 +1,34 @@
+[package]
+name = "beholder"
+version = "0.1.0"
+authors = ["Dillon Hicks <dillon@dillonhicks.io>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+publish = false
+
+[lib]
+name = "beholder"
+path = "src/lib.rs"
+
+[[bin]]
+name = "beholder"
+path = "src/main.rs"
+
+
+[dependencies]
+thiserror = "^1.0"
+derive_more = "^0.99"
+structopt = "^0.3"
+serde = { version = "^1.0", features = ["derive"] }
+serde_json = "^1.0"
+log = "^0.4"
+env_logger = "^0.7"
+lazy_static = "^1.4"
+nix = "^0.18"
+libc = "^0.2"
+
+
+[features]
+default = []
+nightly = []
